@@ -1,0 +1,47 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "image": "https://novosibirsk.milomoor.com/photos/1200x1800/46-20_78.jpg",
+      "artModel": "46-20",
+      "color": "Пудра",
+      "size": "42",
+      "quantityOnStock": "15",
+      "quantityOnWb": "6",
+      "quantityOnOzon": "3"
+    },
+    {
+      "id": "2",
+
+      "image": "https://novosibirsk.milomoor.com/photos/1200x1800/52-80_32.jpg",
+      "artModel": "52-80",
+      "color": "Милори",
+      "size": "44",
+      "quantityOnStock": "18",
+      "quantityOnWb": "3",
+      "quantityOnOzon": "3"
+    },
+    {
+      "id": "3",
+
+      "image": "https://novosibirsk.milomoor.com/photos/1200x1800/46-20_78.jpg",
+      "artModel": "46-20",
+      "color": "Пудра",
+      "size": "46",
+      "quantityOnStock": "12",
+      "quantityOnWb": "9",
+      "quantityOnOzon": "3"
+    },
+    {
+      "id": "4",
+
+      "image": "https://novosibirsk.milomoor.com/photos/1200x1800/4-88_34.jpg",
+      "artModel": "4-88",
+      "color": "Бежевый",
+      "size": "42",
+      "quantityOnStock": "9",
+      "quantityOnWb": "6",
+      "quantityOnOzon": "3"
+    }
+  ]
+}
