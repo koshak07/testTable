@@ -1,3 +1,6 @@
-.table-test {
-  display: grid;
+.tbody {
+}
+.stroka {
+  border: 2px solid rgb(10, 10, 10);
+  padding: 10px;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserContextProvider from "./context/UserContext";
 import MainPage from "./pages/MainPage";
-import TestTable from "./pages/TestTable";
+import TestTable from "./pages/TestTable1";
 
 const MyRoutes = () => {
   return (

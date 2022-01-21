@@ -3,11 +3,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const MainPage = () => {
-  const navigate = useNavigate();
-  const navigateOnTable = () => {
-    navigate("/table");
-  };
-
   return (
     <div>
       <Link to="/table">

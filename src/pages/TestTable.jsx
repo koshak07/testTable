@@ -1,13 +1,4 @@
-import {
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Button } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { userContext } from "../context/UserContext";
@@ -19,49 +10,41 @@ const TestTable = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Link to="/">
         <Button>To Main</Button>
       </Link>
       <h1>Table</h1>
       <div className="table-test">
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 300 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Номер модели</TableCell>
-                <TableCell align="right">Фото</TableCell>
-                <TableCell align="right">Цвет</TableCell>
-                <TableCell align="right">Размер</TableCell>
-                <TableCell align="right">Количество на складе</TableCell>
-                <TableCell align="right">Количество на Вайлдбириз</TableCell>
-                <TableCell align="right">Количество на Озон</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {products.map((item) => (
-                <TableRow
-                  key={item.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {item.artModel}
-                  </TableCell>
-                  <TableCell align="right">
-                    <img width={100} src={item.image} alt="" />
-                  </TableCell>
-                  <TableCell align="right">{item.color}</TableCell>
-                  <TableCell align="right">{item.size}</TableCell>
-                  <TableCell align="right">{item.quantityOnStock}</TableCell>
-                  <TableCell align="right">{item.quantityOnWb}</TableCell>
-                  <TableCell align="right">{item.quantityOnOzon}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <table>
+          <tr className="thead">
+            <th align="center">Номер модели</th>
+            <th align="center">Фото</th>
+            <th align="center">Цвет</th>
+            <th align="center">Размер</th>
+            <th align="center">Количество на складе</th>
+            <th align="center">Количество на Вайлдбириз</th>
+            <th align="center">Количество на Озон</th>
+          </tr>
+
+          <tbody className="tbody">
+            {products.map((item) => (
+              <trr className="stroka" key={item.id}>
+                <trr>{item.artModel}</trr>
+                <trr align="center">
+                  <img width={100} src={item.image} alt="" />
+                </trr>
+                <tr align="center">{item.color}</tr>
+                <tr align="center">{item.size}</tr>
+                <tr align="center">{item.quantityOnStock}</tr>
+                <tr align="center">{item.quantityOnWb}</tr>
+                <tr align="center">{item.quantityOnOzon}</tr>
+              </trr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </div>
+    </>
   );
 };
 
