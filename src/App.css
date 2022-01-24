@@ -1,6 +1,22 @@
-.tbody {
+/* .tbody {
+  display: inline-block;
+  display: flex;
+} */
+.art-number {
+  /* display: flex;
+  flex-direction: row;
+  display: inline-block; */
+  display: grid;
+  grid-template-columns: 120px 120px 2fr;
 }
+.one-art {
+  display: flex;
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
+}
+
 .stroka {
-  border: 2px solid rgb(10, 10, 10);
+  border: 1px solid rgb(10, 10, 10);
   padding: 10px;
 }

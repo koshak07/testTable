@@ -4,6 +4,7 @@
       "id": "1",
       "image": "https://novosibirsk.milomoor.com/photos/1200x1800/46-20_78.jpg",
       "artModel": "46-20",
+      "firstCost": 46.3,
       "color": "Пудра",
       "size": "42",
       "quantityOnStock": "15",
@@ -12,9 +13,9 @@
     },
     {
       "id": "2",
-
       "image": "https://novosibirsk.milomoor.com/photos/1200x1800/52-80_32.jpg",
       "artModel": "52-80",
+      "firstCost": 46.3,
       "color": "Милори",
       "size": "44",
       "quantityOnStock": "18",
@@ -23,9 +24,9 @@
     },
     {
       "id": "3",
-
       "image": "https://novosibirsk.milomoor.com/photos/1200x1800/46-20_78.jpg",
       "artModel": "46-20",
+      "firstCost": 46.3,
       "color": "Пудра",
       "size": "46",
       "quantityOnStock": "12",
@@ -37,6 +38,7 @@
 
       "image": "https://novosibirsk.milomoor.com/photos/1200x1800/4-88_34.jpg",
       "artModel": "4-88",
+      "firstCost": 46.3,
       "color": "Бежевый",
       "size": "42",
       "quantityOnStock": "9",

@@ -9,6 +9,8 @@ const TestTable = () => {
     getProducts();
   }, []);
 
+  products.map((item) => {});
+
   return (
     <>
       <Link to="/">
@@ -16,33 +18,59 @@ const TestTable = () => {
       </Link>
       <h1>Table</h1>
       <div className="table-test">
-        <table>
-          <tr className="thead">
-            <th align="center">Номер модели</th>
-            <th align="center">Фото</th>
-            <th align="center">Цвет</th>
-            <th align="center">Размер</th>
-            <th align="center">Количество на складе</th>
-            <th align="center">Количество на Вайлдбириз</th>
-            <th align="center">Количество на Озон</th>
-          </tr>
+        <div>
+          <div className="thead">
+            {/* <div className="thead-in">Номер модели</div> */}
+            {/* <div className="thead-in">Фото</div> */}
+            {/* <div className="thead-in">Цвет</div> */}
+            {/* <div className="thead-in">Размер</div> */}
+            {/* <div className="thead-in">Количество на складе</div> */}
+            {/* <div className="thead-in">Количество на Вайлдбириз</div> */}
+            {/* <div className="thead-in">Количество на Озон</div> */}
+          </div>
 
-          <tbody className="tbody">
+          <div className="tbody">
             {products.map((item) => (
-              <trr className="stroka" key={item.id}>
-                <trr>{item.artModel}</trr>
-                <trr align="center">
-                  <img width={100} src={item.image} alt="" />
-                </trr>
-                <tr align="center">{item.color}</tr>
-                <tr align="center">{item.size}</tr>
-                <tr align="center">{item.quantityOnStock}</tr>
-                <tr align="center">{item.quantityOnWb}</tr>
-                <tr align="center">{item.quantityOnOzon}</tr>
-              </trr>
+              <div className="" key={item.id}>
+                <div className="art-data">
+                  <div className="art-number">
+                    <div className="thead-in">Номер модели</div>
+                    <div className="">{item.artModel}</div>
+                    <div className="">Себестоимость {item.firstCost}</div>
+                  </div>
+                </div>
+                <div className="one-art">
+                  <div className="art-foto">
+                    <div className="thead-in">Фото</div>
+                    <div className="stroka">
+                      <img width={100} src={item.image} alt="" />
+                    </div>
+                  </div>
+                  <div className="art-color">
+                    <div className="thead-in">Цвет</div>
+                    <div className="stroka">{item.color}</div>
+                  </div>
+                  <div className="art-size">
+                    <div className="thead-in">Размер</div>
+                    <div className="stroka">{item.size}</div>
+                  </div>
+                  <div className="art-quantity-stock">
+                    <div className="thead-in">Количество на складе</div>
+                    <div className="stroka">{item.quantityOnStock}</div>
+                  </div>
+                  <div className="art-quantity-wb">
+                    <div className="thead-in">Количество на Вайлдбириз</div>
+                    <div className="stroka">{item.quantityOnWb}</div>
+                  </div>
+                  <div className="art-quantity-ozon">
+                    <div className="thead-in">Количество на Озон</div>
+                    <div className="stroka">{item.quantityOnOzon}</div>
+                  </div>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
     </>
   );
