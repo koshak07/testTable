@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { userContext } from "../context/UserContext";
+var _ = require("lodash");
 
 const TestTable = () => {
   const { getProducts, products } = useContext(userContext);
@@ -9,7 +10,58 @@ const TestTable = () => {
     getProducts();
   }, []);
 
-  products.map((item) => {});
+  // products.map((item) => {
+  //   let objModel = item;
+
+  // console.log(objModel);
+  // console.log(objModel.color);
+  // });
+
+  _.groupBy(products, function (item) {
+    let modelObj = {
+      id: item.id,
+      image: item.image,
+      artModel: item.artModel,
+      firstCost: item.firstCost,
+      color: item.color,
+      size: item.size,
+      quantityOnStock: item.quantityOnStock,
+      quantityOnWb: item.quantityOnWb,
+      quantityOnOzon: item.quantityOnOzon,
+    };
+    let {
+      id,
+      image,
+      artModel,
+      firstCost,
+      color,
+      size,
+      quantityOnStock,
+      quantityOnWb,
+      quantityOnOzon,
+    } = modelObj;
+
+    for (let index = 0; index <= modelObj.length; index++) {
+      console.log(index);
+      // if ((index = artModel)) {
+      //   console.log(size);
+      // }
+    }
+
+    // if (artModel === artModel) {
+    //   console.log(
+    //     modelObj,
+    //     color,
+    //     size,
+    //     quantityOnStock,
+    //     quantityOnWb,
+    //     quantityOnOzon
+    //   );
+    // }
+    // return modelObj;
+  });
+
+  // _.groupBy([products], "artModel");
 
   return (
     <>
