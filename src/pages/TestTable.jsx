@@ -10,58 +10,17 @@ const TestTable = () => {
     getProducts();
   }, []);
 
-  // products.map((item) => {
-  //   let objModel = item;
+  var myArray = products;
 
-  // console.log(objModel);
-  // console.log(objModel.color);
-  // });
+  function filterByArt(arr, artModel) {
+    return arr.filter(function (item, i, arr) {
+      return item.artModel == artModel;
+    });
+  }
 
-  _.groupBy(products, function (item) {
-    let modelObj = {
-      id: item.id,
-      image: item.image,
-      artModel: item.artModel,
-      firstCost: item.firstCost,
-      color: item.color,
-      size: item.size,
-      quantityOnStock: item.quantityOnStock,
-      quantityOnWb: item.quantityOnWb,
-      quantityOnOzon: item.quantityOnOzon,
-    };
-    let {
-      id,
-      image,
-      artModel,
-      firstCost,
-      color,
-      size,
-      quantityOnStock,
-      quantityOnWb,
-      quantityOnOzon,
-    } = modelObj;
+  var art = filterByArt(myArray, "46-20");
 
-    for (let index = 0; index <= modelObj.length; index++) {
-      console.log(index);
-      // if ((index = artModel)) {
-      //   console.log(size);
-      // }
-    }
-
-    // if (artModel === artModel) {
-    //   console.log(
-    //     modelObj,
-    //     color,
-    //     size,
-    //     quantityOnStock,
-    //     quantityOnWb,
-    //     quantityOnOzon
-    //   );
-    // }
-    // return modelObj;
-  });
-
-  // _.groupBy([products], "artModel");
+  console.log(art);
 
   return (
     <>
