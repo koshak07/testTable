@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useReducer } from "react";
-import { API } from "../helpers/const";
+import { APINOM } from "../helpers/const";
 
 export const userContext = createContext();
 const INIT_STATE = {
@@ -22,7 +22,7 @@ const UserContextProvider = (props) => {
   const getProducts = async () => {
     try {
       let filter = window.location.search;
-      const response = await axios(`${API}${filter}`);
+      const response = await axios(`${APINOM}${filter}`);
       let action = {
         type: "GET_PRODUCTS",
         payload: response.data,
