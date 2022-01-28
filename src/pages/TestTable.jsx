@@ -10,7 +10,7 @@ const TestTable = () => {
     getProducts();
   }, []);
 
-  //get array with artModel
+  //get array filtered on artModel
   let myArray = products;
 
   function filterByArt(arr, artModel) {
@@ -25,13 +25,18 @@ const TestTable = () => {
   //getting unique array artModel
 
   function unique(arr) {
-    return Array.from(new Set(arr));
+    let result = [];
+
+    for (let str of arr) {
+      if (!result.includes(str)) {
+        result.push(str);
+      }
+    }
+
+    return result;
   }
   let uniqueNameArr = unique(arrName);
 
-  // for (let item of uniqueNameArr) {
-  //   return item
-  // }
   let art = filterByArt(myArray, uniqueNameArr[0]);
   //get unique arr
   let templateArr = ["color", "size"];
@@ -42,11 +47,13 @@ const TestTable = () => {
     }, {})
   );
 
-  console.log(res);
+  // console.log(res);
 
   // console.log(art);
 
   //create elements
+
+  let test = art.reduce((i, elem) => {}, []);
 
   let arrNum = art.map((i) => {
     if (i.artModel === uniqueNameArr[0]) {
@@ -74,50 +81,49 @@ const TestTable = () => {
       </Link>
       <h1>Table</h1>
       <div className="table-test">
-        <div>
-          <div className="tbody">
-            {art.map((item) => (
-              <div className="" key={item.id}>
-                <div className="art-data">
-                  <div className="art-number">
-                    <div className="thead-in">Номер модели</div>
-                    <div className="">{item.artModel}</div>
-                    <div className="">Себестоимость {item.firstCost}</div>
-                  </div>
+        <div className="tbody">
+          {art.map((item) => (
+            <div className="" key={item.id}>
+              <div className="art-data">
+                <div className="art-number">
+                  <div className="thead-in">Номер модели</div>
+                  <div className="">{item.artModel}</div>
+                  <div className="">Себестоимость {item.firstCost}</div>
                 </div>
-                <div className="one-art">
-                  <div className="art-foto">
-                    <div className="thead-in">Фото</div>
-                    <div className="stroka">
-                      <img width={100} src={item.image} alt="" />
-                    </div>
-                  </div>
-                  <div className="art-color">
-                    <div className="thead-in">Цвет</div>
-                    {/* <div className="stroka">{item.color}</div> */}
-                    <div className="stroka">{arrNum}</div>
-                  </div>
-                  <div className="art-size">
-                    <div className="thead-in">Размер</div>
-                    {/* <div className="stroka">{item.size}</div> */}
-                    <div className="stroka">{arrNum1}</div>
-                  </div>
-                  <div className="art-quantity-stock">
-                    <div className="thead-in">Количество на складе</div>
-                    <div className="stroka">{item.quantityOnStock}</div>
-                  </div>
-                  <div className="art-quantity-wb">
-                    <div className="thead-in">Количество на Вайлдбириз</div>
-                    <div className="stroka">{item.quantityOnWb}</div>
-                  </div>
-                  <div className="art-quantity-ozon">
-                    <div className="thead-in">Количество на Озон</div>
-                    <div className="stroka">{item.quantityOnOzon}</div>
+                <div className="art-foto">
+                  <div className="thead-in">Фото</div>
+                  <div className="stroka">
+                    <img width={100} src={item.image} alt="" />
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+
+              <div className="one-art">
+                <div className="art-color">
+                  <div className="thead-in">Цвет</div>
+                  {/* <div className="stroka">{item.color}</div> */}
+                  <div className="stroka">{arrNum}</div>
+                </div>
+                <div className="art-size">
+                  <div className="thead-in">Размер</div>
+                  {/* <div className="stroka">{item.size}</div> */}
+                  <div className="stroka">{arrNum1}</div>
+                </div>
+                <div className="art-quantity-stock">
+                  <div className="thead-in">Количество на складе</div>
+                  <div className="stroka">{item.quantityOnStock}</div>
+                </div>
+                <div className="art-quantity-wb">
+                  <div className="thead-in">Количество на Вайлдбириз</div>
+                  <div className="stroka">{item.quantityOnWb}</div>
+                </div>
+                <div className="art-quantity-ozon">
+                  <div className="thead-in">Количество на Озон</div>
+                  <div className="stroka">{item.quantityOnOzon}</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
