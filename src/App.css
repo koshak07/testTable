@@ -26,3 +26,7 @@
   border: 1px solid rgb(10, 10, 10);
   padding: 10px;
 }
+.model-one {
+  display: grid;
+  grid-template-columns: 2.5fr 6fr;
+}

@@ -4,7 +4,7 @@
       "id": "1",
       "brand": "Milomoor",
       "barcode": "mmr098267",
-      "image": "https://novosibirsk.milomoor.com/photos/1200x1800/46-20_78.jpg",
+      "image": "https://milomoor.com/photos/1200x1800/46-20_78.jpg",
       "artModel": "46-20",
       "firstCost": 46.3,
       "erp": 277.8,
@@ -38,7 +38,7 @@
     },
     {
       "id": "2",
-      "image": "https://novosibirsk.milomoor.com/photos/1200x1800/52-80_32.jpg",
+      "image": "https://milomoor.com/photos/1200x1800/52-80_32.jpg",
       "artModel": "52-80",
       "firstCost": 22.5,
       "color": "Милори",

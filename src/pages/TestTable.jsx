@@ -36,8 +36,8 @@ const TestTable = () => {
     return result;
   }
   let uniqueNameArr = unique(arrName);
-
   let art = filterByArt(myArray, uniqueNameArr[0]);
+
   //get unique arr
   let templateArr = ["color", "size"];
   const res = art.map((u) =>
@@ -53,7 +53,25 @@ const TestTable = () => {
 
   //create elements
 
-  let test = art.reduce((i, elem) => {}, []);
+  uniqueNameArr.map((elem) => {
+    let art = filterByArt(myArray, elem);
+
+    console.log(elem);
+    art.map((item) => {
+      console.log(item.color);
+      console.log(item.size);
+    });
+  });
+
+  // if (uniqueNameArr[0] === uniqueNameArr[0]) {
+  //   console.log(uniqueNameArr[0]);
+  // }
+  // art.map((item) => {
+  //   console.log(item.color);
+  //   console.log(item.size);
+  // });
+
+  let img = "https://novosibirsk.milomoor.com/photos/1200x1800/46-20_78.jpg";
 
   let arrNum = art.map((i) => {
     if (i.artModel === uniqueNameArr[0]) {
@@ -83,17 +101,17 @@ const TestTable = () => {
       <div className="table-test">
         <div className="tbody">
           {art.map((item) => (
-            <div className="" key={item.id}>
+            <div className="model-one" key={item.id}>
               <div className="art-data">
                 <div className="art-number">
                   <div className="thead-in">Номер модели</div>
-                  <div className="">{item.artModel}</div>
+                  <div className="">{uniqueNameArr[0]}</div>
                   <div className="">Себестоимость {item.firstCost}</div>
                 </div>
                 <div className="art-foto">
-                  <div className="thead-in">Фото</div>
+                  {/* <div className="thead-in">Фото</div> */}
                   <div className="stroka">
-                    <img width={100} src={item.image} alt="" />
+                    {<img width={100} src={item.image} alt="" />}
                   </div>
                 </div>
               </div>
