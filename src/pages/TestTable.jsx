@@ -36,16 +36,16 @@ const TestTable = () => {
     return result;
   }
   let uniqueNameArr = unique(arrName);
-  let art = filterByArt(myArray, uniqueNameArr[0]);
+  // let art = filterByArt(myArray, uniqueNameArr[0]);
 
   //get unique arr
-  let templateArr = ["color", "size"];
-  const res = art.map((u) =>
-    templateArr.reduce((a, e) => {
-      a[e] = u[e];
-      return a;
-    }, {})
-  );
+  // let templateArr = ["color", "size"];
+  // const res = art.map((u) =>
+  //   templateArr.reduce((a, e) => {
+  //     a[e] = u[e];
+  //     return a;
+  //   }, {})
+  // );
 
   // console.log(res);
 
@@ -53,44 +53,46 @@ const TestTable = () => {
 
   //create elements
 
-  uniqueNameArr.map((elem) => {
-    let art = filterByArt(myArray, elem);
+  // console.log(
+  //   uniqueNameArr.map((elem) => {
+  //     let art = filterByArt(myArray, elem);
 
-    console.log(elem);
-    art.map((item) => {
-      console.log(item.color);
-      console.log(item.size);
-    });
-  });
+  //     return (
+  //       <div className="stroka" key={elem.id}>
+  //         {elem}
+  //         {art.map((item) => {
+  //           let col = item.color;
+  //           let size = item.size;
+  //           return (
+  //             <div key={item.id}>
+  //               <div>{col}</div>
+  //               <div>{size}</div>
+  //             </div>
+  //           );
+  //         })}
+  //       </div>
+  //     );
+  //   })
+  // );
 
-  // if (uniqueNameArr[0] === uniqueNameArr[0]) {
-  //   console.log(uniqueNameArr[0]);
-  // }
-  // art.map((item) => {
-  //   console.log(item.color);
-  //   console.log(item.size);
+  // let arrNum = art.map((i) => {
+  //   if (i.artModel === uniqueNameArr[0]) {
+  //     return (
+  //       <div className="stroka" key={i.id}>
+  //         {i.color}
+  //       </div>
+  //     );
+  //   }
   // });
-
-  let img = "https://novosibirsk.milomoor.com/photos/1200x1800/46-20_78.jpg";
-
-  let arrNum = art.map((i) => {
-    if (i.artModel === uniqueNameArr[0]) {
-      return (
-        <div className="stroka" key={i.id}>
-          {i.color}
-        </div>
-      );
-    }
-  });
-  let arrNum1 = art.map((i) => {
-    if (i.artModel === uniqueNameArr[0]) {
-      return (
-        <div className="stroka" key={i.id}>
-          {i.size}
-        </div>
-      );
-    }
-  });
+  // let arrNum1 = art.map((i) => {
+  //   if (i.artModel === uniqueNameArr[0]) {
+  //     return (
+  //       <div className="stroka" key={i.id}>
+  //         {i.size}
+  //       </div>
+  //     );
+  //   }
+  // });
 
   return (
     <>
@@ -99,50 +101,42 @@ const TestTable = () => {
       </Link>
       <h1>Table</h1>
       <div className="table-test">
-        <div className="tbody">
-          {art.map((item) => (
-            <div className="model-one" key={item.id}>
-              <div className="art-data">
-                <div className="art-number">
+        {uniqueNameArr.map((elem) => {
+          let art = filterByArt(myArray, elem);
+          return (
+            <div className="one-art stroka">
+              <div className="art-data stroka">
+                <div className="art-number ">
                   <div className="thead-in">Номер модели</div>
-                  <div className="">{uniqueNameArr[0]}</div>
-                  <div className="">Себестоимость {item.firstCost}</div>
-                </div>
-                <div className="art-foto">
-                  {/* <div className="thead-in">Фото</div> */}
-                  <div className="stroka">
-                    {<img width={100} src={item.image} alt="" />}
+                  <div className="" key={elem}>
+                    {elem}
+                  </div>
+                  <div className="">
+                    {art.map((i) => {
+                      let img = i.image;
+
+                      return <div>{<img width={100} src={img} alt="" />}</div>;
+                    })}
                   </div>
                 </div>
               </div>
-
-              <div className="one-art">
-                <div className="art-color">
-                  <div className="thead-in">Цвет</div>
-                  {/* <div className="stroka">{item.color}</div> */}
-                  <div className="stroka">{arrNum}</div>
-                </div>
-                <div className="art-size">
-                  <div className="thead-in">Размер</div>
-                  {/* <div className="stroka">{item.size}</div> */}
-                  <div className="stroka">{arrNum1}</div>
-                </div>
-                <div className="art-quantity-stock">
-                  <div className="thead-in">Количество на складе</div>
-                  <div className="stroka">{item.quantityOnStock}</div>
-                </div>
-                <div className="art-quantity-wb">
-                  <div className="thead-in">Количество на Вайлдбириз</div>
-                  <div className="stroka">{item.quantityOnWb}</div>
-                </div>
-                <div className="art-quantity-ozon">
-                  <div className="thead-in">Количество на Озон</div>
-                  <div className="stroka">{item.quantityOnOzon}</div>
-                </div>
+              <div className="nomenclature">
+                {art.map((item) => {
+                  let col = item.color;
+                  let size = item.size;
+                  return (
+                    <div>
+                      <div className="col-sizes" key={item.id}>
+                        <div className="stroka"> Цвет {col}</div>
+                        <div className="stroka"> Размер {size}</div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </>
   );

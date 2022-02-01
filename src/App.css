@@ -1,7 +1,3 @@
-/* .tbody {
-  display: inline-block;
-  display: flex;
-} */
 .art-number {
   /* display: flex;
   flex-direction: row;
@@ -10,10 +6,8 @@
   grid-template-columns: 120px 120px 2fr;
 }
 .one-art {
-  display: flex;
   display: grid;
-  flex-wrap: wrap;
-  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 6fr;
 }
 /* .art-data {
   display: flex;
@@ -25,8 +19,13 @@
 .stroka {
   border: 1px solid rgb(10, 10, 10);
   padding: 10px;
+  display: flex;
 }
-.model-one {
+.nomenclature {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+.col-sizes {
   display: grid;
-  grid-template-columns: 2.5fr 6fr;
 }
