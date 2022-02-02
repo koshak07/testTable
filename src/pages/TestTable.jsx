@@ -53,44 +53,9 @@ const TestTable = () => {
 
   //create elements
 
-  // console.log(
-  //   uniqueNameArr.map((elem) => {
-  //     let art = filterByArt(myArray, elem);
-
-  //     return (
-  //       <div className="stroka" key={elem.id}>
-  //         {elem}
-  //         {art.map((item) => {
-  //           let col = item.color;
-  //           let size = item.size;
-  //           return (
-  //             <div key={item.id}>
-  //               <div>{col}</div>
-  //               <div>{size}</div>
-  //             </div>
-  //           );
-  //         })}
-  //       </div>
-  //     );
-  //   })
-  // );
-
-  // let arrNum = art.map((i) => {
-  //   if (i.artModel === uniqueNameArr[0]) {
-  //     return (
-  //       <div className="stroka" key={i.id}>
-  //         {i.color}
-  //       </div>
-  //     );
-  //   }
-  // });
-  // let arrNum1 = art.map((i) => {
-  //   if (i.artModel === uniqueNameArr[0]) {
-  //     return (
-  //       <div className="stroka" key={i.id}>
-  //         {i.size}
-  //       </div>
-  //     );
+  // art.find((i) => {
+  //   if ((i.artModel = uniqueNameArr[0])) {
+  //     console.log(i.image);
   //   }
   // });
 
@@ -103,6 +68,7 @@ const TestTable = () => {
       <div className="table-test">
         {uniqueNameArr.map((elem) => {
           let art = filterByArt(myArray, elem);
+          console.log(art);
           return (
             <div className="one-art stroka">
               <div className="art-data stroka">
@@ -113,9 +79,15 @@ const TestTable = () => {
                   </div>
                   <div className="">
                     {art.map((i) => {
-                      let img = i.image;
+                      let check = art.find((el) => el.artModel == elem);
 
-                      return <div>{<img width={100} src={img} alt="" />}</div>;
+                      // console.log(check);
+
+                      // return (
+                      //   <div>
+                      //     {<img width={100} src={check.image} alt="" />}
+                      //   </div>
+                      // );
                     })}
                   </div>
                 </div>
