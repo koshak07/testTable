@@ -27,5 +27,5 @@
   margin-left: 10px;
 }
 .col-sizes {
-  display: grid;
+  display: flex;
 }
