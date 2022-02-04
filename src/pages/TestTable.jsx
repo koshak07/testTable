@@ -24,7 +24,17 @@ const TestTable = () => {
 
   let arrPhoto = [];
   products.map((i) => arrPhoto.push(i.image));
+  let arrFirstCost = [];
+  products.map((i) => arrFirstCost.push(i.firstCost));
 
+  let arrNameArrTotal = [];
+  products.map((i) =>
+    arrNameArrTotal.push({
+      artModel: i.artModel,
+      firstCost: i.firstCost,
+      erp: i.erp,
+    })
+  );
   //getting unique array artModel
 
   function unique(arr) {
@@ -41,21 +51,35 @@ const TestTable = () => {
   let uniqueNameArr = unique(arrName);
 
   let uniquePhotoArr = unique(arrPhoto);
-  // console.log(uniquePhotoArr);
 
-  // function uniquePhoto(arr) {
-  //   let result = [];
+  arrNameArrTotal.map((elem) => {
+    return;
+  });
+  function uniqueObj(arr) {
+    let result = [];
+    for (let str of arr) {
+      if (!result.includes(JSON.stringify(str))) {
+        result.push(str);
+      }
+    }
+    result.map((i) => {
+      let uniqueRes = [];
+      if (!i.artModel.includes(result)) {
+        uniqueRes.push({
+          artModel: i.artModel,
+          firstCost: i.firstCost,
+          erp: i.erp,
+        });
+      }
+      return uniqueRes;
+    });
+  }
+  let uniqueArrNameArrTotal = uniqueObj(arrNameArrTotal);
+  console.log(uniqueArrNameArrTotal);
+  // let uP = uniqueObj(uniqueArrNameArrTotal);
+  // console.log(uP);
 
-  //   for (let str of arr) {
-  //     if (!result.includes(str)) {
-  //       result.push(str);
-  //     }
-  //   }
-
-  //   return result;
-  // }
-  // let uniquePhotoArr1 = uniquePhoto(uniquePhotoArr);
-  // console.log(uniquePhotoArr1);
+  //getting unique Photo
 
   let uniquePhotoArr1 = uniqueNameArr.map((elem) => {
     return uniquePhotoArr.find((i) => {
@@ -71,36 +95,23 @@ const TestTable = () => {
 
           resUnique.push(res.find((str1) => str1.includes(elem)));
         }
-        // console.log(res);
         return res;
       }
     });
   });
 
   // need resolv firstCost and erp
+  let unigueFirstCost = unique(arrFirstCost);
+  // console.log(unigueFirstCost);
 
-  // let art = filterByArt(myArray, uniqueNameArr[0]);
-
-  // let uniqueFirstcost = art.map((elem) => {
-  //   return art.find((i) => {
-  //     if (i.artModel === elem) {
-  //       let res = [];
-  //       for (let str of art) {
-  //         if (str.includes(elem)) {
-  //           res.push(str);
-  //         }
-  //       }
-  //       for (let str1 of res) {
-  //         let resUnique = [];
-
-  //         resUnique.push(res.find((str1) => str1.includes(elem)));
-  //       }
-  //       console.log(res);
-  //       return res;
-  //     }
-  //   });
+  // uniqueNameArr.map((elem) => {
+  //   let art = filterByArt(myArray, elem);
+  //   return console.log(
+  //     art.map((el) => {
+  //       return unigueFirstCost.find((cost) => el.firstCost);
+  //     })
+  //   );
   // });
-  // console.log(uniqueFirstcost);
 
   //get unique arr
   // let templateArr = ["color", "size"];
@@ -144,15 +155,15 @@ const TestTable = () => {
                   })}
                 </div>
                 <div>
-                  {art.map((i) => {
-                    if (i.artModel.includes(elem)) {
-                      return (
-                        <div className="" key={i}>
-                          {i.firstCost}
-                        </div>
-                      );
-                    }
-                  })}
+                  {/* {uniqueArrNameArrTotal.map((i) => {
+                    // console.log(el);
+
+                    return (
+                      <div className="" key={i}>
+                        {elem.firstCost}
+                      </div>
+                    );
+                  })} */}
                 </div>
               </div>
               <div className="nomenclature">
