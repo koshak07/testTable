@@ -33,8 +33,11 @@ const TestTable = () => {
       artModel: i.artModel,
       firstCost: i.firstCost,
       erp: i.erp,
+      brand: i.brand,
     })
   );
+
+  // console.log(arrNameArrTotal);
   //getting unique array artModel
 
   function unique(arr) {
@@ -50,37 +53,16 @@ const TestTable = () => {
   }
   let uniqueNameArr = unique(arrName);
 
-  let uniquePhotoArr = unique(arrPhoto);
-
-  arrNameArrTotal.map((elem) => {
-    return;
+  //getting unique array for model data
+  let uniqueArrNameArrTotal = uniqueNameArr.map((elem) => {
+    return arrNameArrTotal.find((i) => elem == i.artModel);
   });
-  function uniqueObj(arr) {
-    let result = [];
-    for (let str of arr) {
-      if (!result.includes(JSON.stringify(str))) {
-        result.push(str);
-      }
-    }
-    result.map((i) => {
-      let uniqueRes = [];
-      if (!i.artModel.includes(result)) {
-        uniqueRes.push({
-          artModel: i.artModel,
-          firstCost: i.firstCost,
-          erp: i.erp,
-        });
-      }
-      return uniqueRes;
-    });
-  }
-  let uniqueArrNameArrTotal = uniqueObj(arrNameArrTotal);
-  console.log(uniqueArrNameArrTotal);
-  // let uP = uniqueObj(uniqueArrNameArrTotal);
-  // console.log(uP);
+
+  // console.log(uniqueArrNameArrTotal);
 
   //getting unique Photo
 
+  let uniquePhotoArr = unique(arrPhoto);
   let uniquePhotoArr1 = uniqueNameArr.map((elem) => {
     return uniquePhotoArr.find((i) => {
       if (i.includes(elem)) {
@@ -99,19 +81,6 @@ const TestTable = () => {
       }
     });
   });
-
-  // need resolv firstCost and erp
-  let unigueFirstCost = unique(arrFirstCost);
-  // console.log(unigueFirstCost);
-
-  // uniqueNameArr.map((elem) => {
-  //   let art = filterByArt(myArray, elem);
-  //   return console.log(
-  //     art.map((el) => {
-  //       return unigueFirstCost.find((cost) => el.firstCost);
-  //     })
-  //   );
-  // });
 
   //get unique arr
   // let templateArr = ["color", "size"];
@@ -147,7 +116,7 @@ const TestTable = () => {
                   {uniquePhotoArr1.map((i) => {
                     if (i.includes(elem)) {
                       return (
-                        <div className="" key={i}>
+                        <div className="stroka" key={i}>
                           <img width={100} src={i} alt="" />
                         </div>
                       );
@@ -155,32 +124,120 @@ const TestTable = () => {
                   })}
                 </div>
                 <div>
-                  {/* {uniqueArrNameArrTotal.map((i) => {
-                    // console.log(el);
-
-                    return (
-                      <div className="" key={i}>
-                        {elem.firstCost}
-                      </div>
-                    );
-                  })} */}
+                  {uniqueArrNameArrTotal.map((i) => {
+                    if (i.artModel === elem)
+                      return (
+                        <div className="stroka" key={i}>
+                          Cебестоимость {i.firstCost}
+                        </div>
+                      );
+                  })}
+                </div>
+                <div>
+                  {uniqueArrNameArrTotal.map((i) => {
+                    if (i.artModel === elem)
+                      return (
+                        <div className="stroka" key={i}>
+                          РРЦ {i.erp}
+                        </div>
+                      );
+                  })}
+                </div>
+                <div>
+                  {uniqueArrNameArrTotal.map((i) => {
+                    if (i.artModel === elem)
+                      return (
+                        <div className="stroka" key={i}>
+                          Брэнд {i.brand}
+                        </div>
+                      );
+                  })}
                 </div>
               </div>
-              <div className="nomenclature">
-                {art.map((item) => {
-                  let col = item.color;
-                  let size = item.size;
-                  let cost = item.quantityOnProductionPlan;
-                  return (
-                    <div key={item.id}>
-                      <div className="col-sizes">
-                        <div className="stroka"> Цвет {col}</div>
-                        <div className="stroka"> Размер {size}</div>
-                        <div className="stroka"> В плане {cost}</div>
+              <div className=" stroka nomenclature">
+                <div className=" stroka groupnom">
+                  Номенклатура
+                  <div className="blocknom stroka">
+                    Цвет
+                    {art.map((item) => {
+                      return (
+                        <div key={item.id}>
+                          <div className="col-sizes">
+                            <div className="stroka"> {item.color}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="blocknom stroka">
+                    Размер
+                    {art.map((item) => {
+                      return (
+                        <div key={item.id}>
+                          <div className="col-sizes">
+                            <div className="stroka"> {item.size}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className="quantity-stock stroka">
+                  Склад
+                  <div className="quantity-stock stroka">
+                    Бишкек
+                    {art.map((item) => {
+                      return (
+                        <div key={item.id}>
+                          <div className="stroka">
+                            {item.quantityOnStockMain}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="quantity-stock stroka">
+                    В пути
+                    {art.map((item) => {
+                      return (
+                        <div key={item.id}>
+                          <div className="stroka">
+                            {item.quantityOnStockOnWay}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="quantity-stock stroka">
+                    Новосибирск
+                    {art.map((item) => {
+                      return (
+                        <div key={item.id}>
+                          <div className="stroka">
+                            {item.quantityOnStockSklad1}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className="production">
+                  {art.map((item) => {
+                    return (
+                      <div key={item.id}>
+                        <div className="stroka">
+                          В плане {item.quantityOnProductionPlan}
+                        </div>
+                        <div className="stroka">
+                          В крое {item.quantityOnProductionFit}
+                        </div>
+                        <div className="stroka">
+                          В пошиве {item.quantityOnProductionSew}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           );

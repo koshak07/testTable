@@ -8,24 +8,35 @@
 .one-art {
   display: grid;
   grid-template-columns: 1.5fr 6fr;
+  background-color: #f6f6f6;
 }
-/* .art-data {
-  display: flex;
-  display: grid;
-  flex-wrap: wrap;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-} */
 
 .stroka {
   border: 1px solid rgb(10, 10, 10);
   padding: 10px;
   display: flex;
 }
-.nomenclature {
+/* .nomenclature {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+} */
+.blocknom {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
 }
+
 .col-sizes {
   display: flex;
+  flex-direction: column;
+}
+.groupnom {
+  display: flex;
+  flex-direction: column;
+}
+.quantity-stock {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
 }
