@@ -1,26 +1,28 @@
-.art-number {
-  /* display: flex;
+/* .art-number {
+  display: flex;
   flex-direction: row;
-  display: inline-block; */
   display: grid;
+  display: inline-block;
   grid-template-columns: 120px 120px 2fr;
-}
+} */
 .one-art {
   display: grid;
-  grid-template-columns: 1.5fr 6fr;
+  grid-template-columns: 0.5fr 11fr;
   background-color: #f6f6f6;
 }
 
 .stroka {
   border: 1px solid rgb(10, 10, 10);
   padding: 10px;
-  display: flex;
 }
-/* .nomenclature {
+.nomenclature {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
-} */
+}
+.block-1 {
+  display: block;
+}
 .blocknom {
   display: flex;
   flex-direction: column;
@@ -34,9 +36,9 @@
 .groupnom {
   display: flex;
   flex-direction: column;
-}
-.quantity-stock {
-  display: flex;
-  flex-direction: column;
   margin-left: 10px;
+}
+.block-in {
+  display: flex;
+  flex-direction: row;
 }
