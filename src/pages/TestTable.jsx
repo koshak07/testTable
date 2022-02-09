@@ -1,4 +1,4 @@
-import { Button, checkboxClasses } from "@mui/material";
+import { Button } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { userContext } from "../context/UserContext";
@@ -24,8 +24,6 @@ const TestTable = () => {
 
   let arrPhoto = [];
   products.map((i) => arrPhoto.push(i.image));
-  let arrFirstCost = [];
-  products.map((i) => arrFirstCost.push(i.firstCost));
 
   let arrNameArrTotal = [];
   products.map((i) =>
@@ -55,7 +53,7 @@ const TestTable = () => {
 
   //getting unique array for model data
   let uniqueArrNameArrTotal = uniqueNameArr.map((elem) => {
-    return arrNameArrTotal.find((i) => elem == i.artModel);
+    return arrNameArrTotal.find((i) => elem === i.artModel);
   });
 
   // console.log(uniqueArrNameArrTotal);
@@ -68,20 +66,15 @@ const TestTable = () => {
       if (i.includes(elem)) {
         let res = [];
         for (let str of uniquePhotoArr) {
-          if (str.includes(elem)) {
-            res.push(str);
-          }
+          res.push(str);
         }
-        for (let str1 of res) {
-          let resUnique = [];
 
-          resUnique.push(res.find((str1) => str1.includes(elem)));
-        }
         return res;
       }
     });
   });
 
+  // console.log(result);
   //get unique arr
   // let templateArr = ["color", "size"];
   // const res = art.map((u) =>
@@ -93,7 +86,21 @@ const TestTable = () => {
 
   // console.log(res);
 
-  // console.log(art);
+  let res = uniqueNameArr.map((elem) => {
+    let art = filterByArt(myArray, elem);
+
+    let arr = [];
+    art.map((item) => {
+      arr.push(item.quantityOnStockMain);
+    });
+    // console.log(arr);
+    let result = arr.reduce(function (sum, el) {
+      return sum + el;
+    });
+
+    console.log(result);
+    return result;
+  });
 
   //create elements
 
@@ -106,6 +113,9 @@ const TestTable = () => {
       <div className="table-test">
         {uniqueNameArr.map((elem) => {
           let art = filterByArt(myArray, elem);
+          let stockMain = [];
+          let stockOnWay = [];
+          let stockSklad1 = [];
 
           return (
             <div className="one-art stroka" key={elem}>
@@ -153,7 +163,7 @@ const TestTable = () => {
                   })}
                 </div>
               </div>
-              <div className=" stroka nomenclature">
+              <div className="  nomenclature">
                 <div className=" stroka groupnom">
                   <div className="block-1 stroka">Номенклатура</div>
                   <div className="block-in">
@@ -189,6 +199,8 @@ const TestTable = () => {
                     <div className="quantity-stock  stroka">
                       Бишкек
                       {art.map((item) => {
+                        stockMain.push(item.quantityOnStockMain);
+
                         return (
                           <div className="col-sizes" key={item.id}>
                             <div className="stroka">
@@ -197,10 +209,18 @@ const TestTable = () => {
                           </div>
                         );
                       })}
+                      <div className="stroka">
+                        итого{": "}
+                        {stockMain.reduce(function (sum, el) {
+                          return sum + el;
+                        })}
+                      </div>
                     </div>
                     <div className="quantity-stock stroka">
                       В пути
                       {art.map((item) => {
+                        stockOnWay.push(item.quantityOnStockOnWay);
+
                         return (
                           <div className="col-sizes" key={item.id}>
                             <div className="stroka">
@@ -209,10 +229,18 @@ const TestTable = () => {
                           </div>
                         );
                       })}
+                      <div className="stroka">
+                        итого{": "}
+                        {stockOnWay.reduce(function (sum, el) {
+                          return sum + el;
+                        })}
+                      </div>
                     </div>
                     <div className="quantity-stock stroka">
                       Новосибирск
                       {art.map((item) => {
+                        stockSklad1.push(item.quantityOnStockSklad1);
+
                         return (
                           <div className="col-sizes" key={item.id}>
                             <div className="stroka">
@@ -221,6 +249,12 @@ const TestTable = () => {
                           </div>
                         );
                       })}
+                      <div className="stroka">
+                        итого{": "}
+                        {stockSklad1.reduce(function (sum, el) {
+                          return sum + el;
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -299,12 +333,12 @@ const TestTable = () => {
                       Резерв
                       {art.map((item) => {
                         return (
-                          <div key={item.id}>
+                          <div className="rez" key={item.id}>
+                            <div className="stroka">
+                              <input type="number" />
+                            </div>
                             <div className="stroka">
                               {item.quantityOnWbReserve}
-                              <div className="stroka">
-                                <input type="number" />
-                              </div>
                             </div>
                           </div>
                         );
