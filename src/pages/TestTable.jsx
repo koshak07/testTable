@@ -35,7 +35,6 @@ const TestTable = () => {
     })
   );
 
-  // console.log(arrNameArrTotal);
   //getting unique array artModel
 
   function unique(arr) {
@@ -74,34 +73,32 @@ const TestTable = () => {
     });
   });
 
-  // console.log(result);
-  //get unique arr
-  // let templateArr = ["color", "size"];
-  // const res = art.map((u) =>
-  //   templateArr.reduce((a, e) => {
-  //     a[e] = u[e];
-  //     return a;
-  //   }, {})
-  // );
+  //sort
 
-  // console.log(res);
+  //////
+  function sortfunctionColor(a, b) {
+    if (a.color < b.color) return -1;
 
-  let res = uniqueNameArr.map((elem) => {
-    let art = filterByArt(myArray, elem);
+    if (a.color > b.color) return 1;
+    if (a.size < b.size) return -1;
 
-    let arr = [];
-    art.map((item) => {
-      arr.push(item.quantityOnStockMain);
-    });
-    // console.log(arr);
-    let result = arr.reduce(function (sum, el) {
-      return sum + el;
-    });
+    if (a.size > b.size) return 1;
 
-    console.log(result);
-    return result;
-  });
+    return 0;
+  }
 
+  function sortfunctionTest(a, b) {
+    if (a.quantityOnStockMain < b.quantityOnStockMain) return -1;
+
+    if (a.quantityOnStockMain > b.quantityOnStockMain) return 1;
+
+    return 0;
+  }
+  // let testSort = () => {
+  //   art.sort(sortfunctionTest).map((item) => {
+  //     console.log(item.quantityOnStockMain);
+  //   });
+  // };
   //create elements
 
   return (
@@ -113,6 +110,8 @@ const TestTable = () => {
       <div className="table-test">
         {uniqueNameArr.map((elem) => {
           let art = filterByArt(myArray, elem);
+          const arrProducts = art;
+
           let stockMain = [];
           let stockOnWay = [];
           let stockSklad1 = [];
@@ -168,20 +167,30 @@ const TestTable = () => {
                   <div className="block-1 stroka">Номенклатура</div>
                   <div className="block-in">
                     <div className=" stroka">
-                      Цвет
-                      {art.map((item) => {
-                        return (
-                          <div className="col-sizes" key={item.id}>
-                            <div className="">
-                              <div className="stroka"> {item.color}</div>
+                      Цвет{" "}
+                      <button
+                        type="button"
+                        // onClick={() => requestSort("color")}
+                      >
+                        Name
+                      </button>
+                      {art
+                        .sort(sortfunctionColor)
+
+                        .map((item) => {
+                          return (
+                            <div className="col-sizes" key={item.id}>
+                              <div className="">
+                                <div className="stroka"> {item.color}</div>
+                              </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
                     </div>
                     <div className=" stroka">
                       Размер
                       {art.map((item) => {
+                        // console.log(item.size);
                         return (
                           <div className="col-sizes" key={item.id}>
                             <div className="">
