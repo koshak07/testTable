@@ -1,11 +1,12 @@
 import { Button } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { userContext } from "../context/UserContext";
 let _ = require("lodash");
 
-const TestTable = () => {
+const TestTable = (props) => {
   const { getProducts, products } = useContext(userContext);
+
   useEffect(() => {
     getProducts();
   }, []);
@@ -75,8 +76,19 @@ const TestTable = () => {
 
   //sort
 
+  let colorArr = uniqueNameArr.map((elem) => {
+    let res = [];
+    let art = filterByArt(myArray, elem).map((i) => res.push(i));
+
+    return res;
+  });
+  // const [arr, setValue] = useState(newArt);
+  // console.log(newArt);
+
   //////
+
   function sortfunctionColor(a, b) {
+    console.log(a);
     if (a.color < b.color) return -1;
 
     if (a.color > b.color) return 1;
@@ -170,7 +182,7 @@ const TestTable = () => {
                       Цвет{" "}
                       <button
                         type="button"
-                        // onClick={() => requestSort("color")}
+                        // onClick={() => sortfunctionColorSize()}
                       >
                         Name
                       </button>
