@@ -76,19 +76,70 @@ const TestTable = (props) => {
 
   //sort
 
+  //////
+  const useSortableData = (items, config = null) => {
+    const [sortConfig, setSortConfig] = React.useState(config);
+    const sortedItems = React.useMemo(() => {
+      let sortableItems1 = uniqueNameArr.map((elem) => {
+        let art = filterByArt(myArray, elem).sort(sortfunctionColor);
+
+        let res = [];
+        // art.map((i) => console.log(i));
+        // console.log(art);
+
+        let sortableItems = [...art];
+        // console.log(sortableItems);
+        if (sortConfig !== null) {
+          sortableItems.sort((a, b) => {
+            if (a[sortConfig.key] < b[sortConfig.key]) {
+              return sortConfig.direction === "ascending" ? -1 : 1;
+            }
+            if (a[sortConfig.key] > b[sortConfig.key]) {
+              return sortConfig.direction === "ascending" ? 1 : -1;
+            }
+            return 0;
+          });
+        }
+        // console.log(sortableItems);
+        return sortableItems;
+      });
+      // console.log(items);
+    }, [items, sortConfig]);
+
+    const requestSort = (key) => {
+      let direction = "ascending";
+      if (
+        sortConfig &&
+        sortConfig.key === key &&
+        sortConfig.direction === "ascending"
+      ) {
+        direction = "descending";
+      }
+      setSortConfig({ key, direction });
+    };
+    // console.log(sortedItems);
+    return { items: sortedItems, requestSort, sortConfig };
+  };
   let colorArr = uniqueNameArr.map((elem) => {
     let res = [];
-    let art = filterByArt(myArray, elem).map((i) => res.push(i));
+    let art = filterByArt(myArray, elem).sort(sortfunctionColor);
 
-    return res;
+    return art;
   });
-  // const [arr, setValue] = useState(newArt);
-  // console.log(newArt);
-
+  // console.log(colorArr);
+  const { items, requestSort, sortConfig } = useSortableData(colorArr);
+  // console.log(items);
+  const getClassNamesFor = (color) => {
+    if (!sortConfig) {
+      return;
+    }
+    return sortConfig.key === color ? sortConfig.direction : undefined;
+  };
+  // console.log(items);
   //////
 
   function sortfunctionColor(a, b) {
-    console.log(a);
+    // console.log(a);
     if (a.color < b.color) return -1;
 
     if (a.color > b.color) return 1;
@@ -99,19 +150,13 @@ const TestTable = (props) => {
     return 0;
   }
 
-  function sortfunctionTest(a, b) {
+  function sortfunctionStockMain(a, b) {
     if (a.quantityOnStockMain < b.quantityOnStockMain) return -1;
 
     if (a.quantityOnStockMain > b.quantityOnStockMain) return 1;
 
     return 0;
   }
-  // let testSort = () => {
-  //   art.sort(sortfunctionTest).map((item) => {
-  //     console.log(item.quantityOnStockMain);
-  //   });
-  // };
-  //create elements
 
   return (
     <>
@@ -121,8 +166,7 @@ const TestTable = (props) => {
       <h1>Table</h1>
       <div className="table-test">
         {uniqueNameArr.map((elem) => {
-          let art = filterByArt(myArray, elem);
-          const arrProducts = art;
+          let art = filterByArt(myArray, elem).sort(sortfunctionColor);
 
           let stockMain = [];
           let stockOnWay = [];
@@ -178,33 +222,29 @@ const TestTable = (props) => {
                 <div className=" stroka groupnom">
                   <div className="block-1 stroka">Номенклатура</div>
                   <div className="block-in">
-                    <div className=" stroka">
-                      Цвет{" "}
+                    <div className="color stroka">
                       <button
                         type="button"
-                        // onClick={() => sortfunctionColorSize()}
+                        onClick={() => requestSort("color")}
+                        className={getClassNamesFor("items.color")}
                       >
                         Name
                       </button>
-                      {art
-                        .sort(sortfunctionColor)
-
-                        .map((item) => {
-                          return (
-                            <div className="col-sizes" key={item.id}>
-                              <div className="">
-                                <div className="stroka"> {item.color}</div>
-                              </div>
-                            </div>
-                          );
-                        })}
+                      Цвет{" "}
+                      {art.map((item) => {
+                        return (
+                          <div className="col-sizes" key={item.id + item.color}>
+                            <div className="stroka"> {item.color}</div>
+                          </div>
+                        );
+                      })}
                     </div>
                     <div className=" stroka">
                       Размер
                       {art.map((item) => {
                         // console.log(item.size);
                         return (
-                          <div className="col-sizes" key={item.id}>
+                          <div className="col-sizes" key={item.id + item.color}>
                             <div className="">
                               <div className="stroka"> {item.size}</div>
                             </div>
