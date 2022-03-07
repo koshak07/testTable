@@ -11,9 +11,9 @@
       "color": "Пудра",
       "size": "42",
 
-      "quantityOnProductionPlan": "2",
-      "quantityOnProductionFit": "1",
-      "quantityOnProductionSew": "6",
+      "quantityOnProductionPlan": 2,
+      "quantityOnProductionFit": 1,
+      "quantityOnProductionSew": 6,
 
       "quantityOnStockMain": 4,
       "quantityOnStockSklad1": 2,

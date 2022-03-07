@@ -79,12 +79,9 @@ const TestTable = (props) => {
   //////
   const useSortableData = (items, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);
-    console.log(sortConfig);
 
-    // console.log(art);
     const sortedItems = React.useMemo(() => {
       let sortableItems = [...items].sort(sortfunctionColor);
-      // console.log(sortableItems);
 
       if (sortConfig !== null) {
         sortableItems.sort((a, b) => {
@@ -97,10 +94,7 @@ const TestTable = (props) => {
           return 0;
         });
       }
-      // console.log(sortableItems);
       return sortableItems;
-
-      // console.log(items);
     }, [items, sortConfig]);
     const requestSort = (key) => {
       let direction = "ascending";
@@ -113,7 +107,6 @@ const TestTable = (props) => {
       }
       setSortConfig({ key, direction });
     };
-    // console.log(sortConfig);
 
     return { items: sortedItems, requestSort, sortConfig };
   };
@@ -124,54 +117,24 @@ const TestTable = (props) => {
 
     return art;
   });
-  // console.log(colorArr);
   const { items, requestSort, sortConfig } = useSortableData(myArray);
-  // let arr = items.map((i) => {
-  //   console.log(i);
-  //   return i;
-  // });
-  console.log(items);
-  // console.log(sortConfig);
-  // console.log(requestSort);
-  // console.log(useSortableData(colorArr));
+
   const getClassNamesFor = (color) => {
     if (!sortConfig) {
       return;
     }
     return sortConfig.key === color ? sortConfig.direction : undefined;
   };
-  console.log(sortConfig);
-
-  // const [sortArr, setSortArr] = useState(colorArr);
-  // console.log(sortArr);
-
-  // const [sortColArr, setSortColArr] = useState(colorArr);
-  // // console.log(sortColArr);
-  // let handler = () => {
-  //   let sorted = sortColArr;
-  //   sorted.sort(sortfunctionColor);
-  //   // console.log(sorted);
-  //   setSortColArr(sorted);
-  // };
 
   //////
 
   function sortfunctionColor(a, b) {
-    // console.log(a);
     if (a.color < b.color) return -1;
 
     if (a.color > b.color) return 1;
     if (a.size < b.size) return -1;
 
     if (a.size > b.size) return 1;
-
-    return 0;
-  }
-
-  function sortfunctionStockMain(a, b) {
-    if (a.quantityOnStockMain < b.quantityOnStockMain) return -1;
-
-    if (a.quantityOnStockMain > b.quantityOnStockMain) return 1;
 
     return 0;
   }
@@ -207,12 +170,28 @@ const TestTable = (props) => {
         <div className="tbody">
           {uniqueNameArr.map((elem) => {
             let art = filterByArt(items, elem);
-            console.log(art);
-            items.map((art) => {});
-
             let stockMain = [];
             let stockOnWay = [];
             let stockSklad1 = [];
+            let productionPlan = [];
+            let productionFit = [];
+            let productionSew = [];
+            let quantityRetailing = [];
+            let profitRetailing = [];
+            let onWbReserv = [];
+            let onWbOnWay = [];
+            let onWbOnStock = [];
+            let onWbOnСlientReserve = [];
+            let onWbOnSales = [];
+            let onWbOnSalesProfit = [];
+
+            // let arrSumPerStock = [];
+            // let st = ".sum";
+            // console.log(typeof st);
+            // arrSumPerStock.push({
+            //   elem: st,
+            // });
+            // console.log(arrSumPerStock);
 
             return (
               <div className="one-art stroka" key={elem}>
@@ -265,15 +244,14 @@ const TestTable = (props) => {
                     <div className="block-1 stroka">Номенклатура</div>
                     <div className="block-in">
                       <div className="color stroka">
-                        Цвет{" "}
                         <button
                           type="button"
                           onClick={() => requestSort("color")}
                           className={getClassNamesFor("color")}
                         >
-                          Color
+                          Цвет
                         </button>
-                        {art.map((item, index) => {
+                        {art.map((item) => {
                           return (
                             <div className="col-sizes" key={item.id}>
                               <div className="stroka"> {item.color}</div>
@@ -284,7 +262,6 @@ const TestTable = (props) => {
                       <div className=" stroka">
                         Размер
                         {art.map((item) => {
-                          // console.log(item.size);
                           return (
                             <div className="col-sizes" key={item.id}>
                               <div className="">
@@ -301,7 +278,13 @@ const TestTable = (props) => {
                     <div className="block-2 stroka">Склад</div>
                     <div className="block-in">
                       <div className="quantity-stock  stroka">
-                        Бишкек
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnStockMain")}
+                          className={getClassNamesFor("quantityOnStockMain")}
+                        >
+                          Бишкек
+                        </button>
                         {art.map((item) => {
                           stockMain.push(item.quantityOnStockMain);
 
@@ -313,7 +296,7 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
-                        <div className="stroka">
+                        <div className="stroka sum">
                           итого{": "}
                           {stockMain.reduce(function (sum, el) {
                             return sum + el;
@@ -321,7 +304,13 @@ const TestTable = (props) => {
                         </div>
                       </div>
                       <div className="quantity-stock stroka">
-                        В пути
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnStockOnWay")}
+                          className={getClassNamesFor("quantityOnStockOnWay")}
+                        >
+                          В пути
+                        </button>
                         {art.map((item) => {
                           stockOnWay.push(item.quantityOnStockOnWay);
 
@@ -341,7 +330,13 @@ const TestTable = (props) => {
                         </div>
                       </div>
                       <div className="quantity-stock stroka">
-                        Новосибирск
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnStockSklad1")}
+                          className={getClassNamesFor("quantityOnStockSklad1")}
+                        >
+                          Новосибирск
+                        </button>
                         {art.map((item) => {
                           stockSklad1.push(item.quantityOnStockSklad1);
 
@@ -366,8 +361,20 @@ const TestTable = (props) => {
                     <div className="block-3 stroka">Производство</div>
                     <div className="block-in">
                       <div className="stroka">
-                        В плане
+                        <button
+                          type="button"
+                          onClick={() =>
+                            requestSort("quantityOnProductionPlan")
+                          }
+                          className={getClassNamesFor(
+                            "quantityOnProductionPlan"
+                          )}
+                        >
+                          В плане
+                        </button>
                         {art.map((item) => {
+                          productionPlan.push(item.quantityOnProductionPlan);
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -376,10 +383,26 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {productionPlan.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                       <div className="stroka">
-                        В крое
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnProductionFit")}
+                          className={getClassNamesFor(
+                            "quantityOnProductionFit"
+                          )}
+                        >
+                          В крое
+                        </button>
                         {art.map((item) => {
+                          productionFit.push(item.quantityOnProductionFit);
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -388,10 +411,26 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {productionFit.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                       <div className="stroka">
-                        В пошиве
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnProductionSew")}
+                          className={getClassNamesFor(
+                            "quantityOnProductionSew"
+                          )}
+                        >
+                          В пошиве
+                        </button>
                         {art.map((item) => {
+                          productionSew.push(item.quantityOnProductionSew);
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -400,6 +439,12 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {productionSew.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -407,8 +452,16 @@ const TestTable = (props) => {
                     <div className="block-4 stroka">Розница</div>
                     <div className="block-in">
                       <div className="stroka">
-                        Продажи
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityRetailing")}
+                          className={getClassNamesFor("quantityRetailing")}
+                        >
+                          Продажи
+                        </button>
                         {art.map((item) => {
+                          quantityRetailing.push(item.quantityRetailing);
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -417,10 +470,24 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {quantityRetailing.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                       <div className="stroka">
-                        Результат
+                        <button
+                          type="button"
+                          onClick={() => requestSort("profitRetailing")}
+                          className={getClassNamesFor("profitRetailing")}
+                        >
+                          Результат
+                        </button>
                         {art.map((item) => {
+                          profitRetailing.push(item.profitRetailing);
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -429,6 +496,12 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {profitRetailing.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -436,8 +509,16 @@ const TestTable = (props) => {
                     <div className="block-5 stroka">Wildberries</div>
                     <div className="block-in">
                       <div className="stroka">
-                        Резерв
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnWbReserve")}
+                          className={getClassNamesFor("quantityOnWbReserve")}
+                        >
+                          Резерв
+                        </button>
                         {art.map((item) => {
+                          onWbReserv.push(item.quantityOnWbReserve);
+
                           return (
                             <div className="rez" key={item.id}>
                               <div className="stroka">
@@ -449,10 +530,24 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {onWbReserv.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                       <div className="stroka">
-                        В пути на
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnWbOnWay")}
+                          className={getClassNamesFor("quantityOnWbOnWay")}
+                        >
+                          В пути на
+                        </button>
                         {art.map((item) => {
+                          onWbOnWay.push(item.quantityOnWbOnWay);
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -461,10 +556,24 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {onWbOnWay.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                       <div className="stroka">
-                        Склад
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnWbStock")}
+                          className={getClassNamesFor("quantityOnWbStock")}
+                        >
+                          Склад
+                        </button>
                         {art.map((item) => {
+                          onWbOnStock.push(item.quantityOnWbStock);
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -473,10 +582,30 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {onWbOnStock.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                       <div className="stroka">
-                        У клиентов
+                        <button
+                          type="button"
+                          onClick={() =>
+                            requestSort("quantityOnWbClientReserve")
+                          }
+                          className={getClassNamesFor(
+                            "quantityOnWbClientReserve"
+                          )}
+                        >
+                          У клиента
+                        </button>
                         {art.map((item) => {
+                          onWbOnСlientReserve.push(
+                            item.quantityOnWbClientReserve
+                          );
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -485,10 +614,23 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {onWbOnСlientReserve.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                       <div className="stroka">
-                        Продажи
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnWbSales")}
+                          className={getClassNamesFor("quantityOnWbSales")}
+                        >
+                          Продажи
+                        </button>
                         {art.map((item) => {
+                          onWbOnSales.push(item.quantityOnWbSales);
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -497,10 +639,26 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {onWbOnSales.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                       <div className="stroka">
-                        Результат
+                        <button
+                          type="button"
+                          onClick={() => requestSort("quantityOnWbSalesProfit")}
+                          className={getClassNamesFor(
+                            "quantityOnWbSalesProfit"
+                          )}
+                        >
+                          Результат
+                        </button>
                         {art.map((item) => {
+                          onWbOnSalesProfit.push(item.quantityOnWbSalesProfit);
+
                           return (
                             <div key={item.id}>
                               <div className="stroka">
@@ -509,6 +667,12 @@ const TestTable = (props) => {
                             </div>
                           );
                         })}
+                        <div className="stroka">
+                          итого{": "}
+                          {onWbOnSalesProfit.reduce(function (sum, el) {
+                            return sum + el;
+                          })}
+                        </div>
                       </div>
                     </div>
                   </div>
