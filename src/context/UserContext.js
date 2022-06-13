@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { createContext, useReducer, useState } from "react";
 import { APINOM } from "../helpers/const";
+import UserStore from "../store/UserStore";
+import DataStore from "../store/DataStore";
 
 export const userContext = createContext();
 const INIT_STATE = {
@@ -38,6 +40,9 @@ const UserContextProvider = (props) => {
       value={{
         getProducts,
         products: state.products,
+
+        user: new UserStore(),
+        nomenclature: new DataStore(),
       }}
     >
       {props.children}
