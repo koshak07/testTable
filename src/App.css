@@ -66,11 +66,47 @@ button {
   margin-bottom: 1px;
 }
 
-.admin_button {
+/* .admin_button {
   display: flex;
   flex-direction: column;
-}
+} */
 .admin_button button {
   margin-top: 20px;
   cursor: pointer;
 }
+.placeholder {
+  font-size: 1.5em;
+  cursor: auto;
+}
+
+/* .modal_add {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.modal_add.active_add {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal_add_content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+}
+.modal_add_content.active_add {
+  transform: scale(1);
+} */

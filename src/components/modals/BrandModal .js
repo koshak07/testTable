@@ -9,33 +9,29 @@ import {
   ModalHeader,
   ModalTitle,
 } from "react-bootstrap";
-import { createSize } from "../../http/sizeApi";
+import { createBrand } from "../../http/brandApi";
 
-const SizeModal = ({ show, onHide }) => {
+const BrandModal = ({ show, onHide }) => {
   const [value, setValue] = useState("");
-  const addSize = () => {
-    try {
-      createSize({ name: value }).then((data) => {
-        setValue("");
-        onHide();
-      });
-    } catch (e) {
-      console.log(e.response.data.message);
-    }
+  const addBrand = () => {
+    createBrand({ name: value }).then((data) => {
+      setValue("");
+      onHide();
+    });
   };
 
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <ModalHeader closeButton>
         <ModalTitle id="contained-modal-title-vcenter">
-          Добавление размера
+          Добавление Брэнда
         </ModalTitle>
       </ModalHeader>
       <ModalBody>
         <Form>
           <FormControl
             className="placeholder"
-            placeholder={"Enter size"}
+            placeholder={"Enter brand"}
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
@@ -45,12 +41,12 @@ const SizeModal = ({ show, onHide }) => {
         <Button variant="outline-danger" onClick={onHide}>
           Close
         </Button>
-        <Button variant="outline-success" onClick={addSize}>
-          Add size
+        <Button variant="outline-success" onClick={addBrand}>
+          Add brand
         </Button>
       </ModalFooter>
     </Modal>
   );
 };
 
-export default SizeModal;
+export default BrandModal;

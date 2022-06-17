@@ -9,33 +9,29 @@ import {
   ModalHeader,
   ModalTitle,
 } from "react-bootstrap";
-import { createSize } from "../../http/sizeApi";
+import { createColor } from "../../http/colorApi";
 
-const SizeModal = ({ show, onHide }) => {
+const ColorModal = ({ show, onHide }) => {
   const [value, setValue] = useState("");
-  const addSize = () => {
-    try {
-      createSize({ name: value }).then((data) => {
-        setValue("");
-        onHide();
-      });
-    } catch (e) {
-      console.log(e.response.data.message);
-    }
+  const addColor = () => {
+    createColor({ name: value }).then((data) => {
+      setValue("");
+      onHide();
+    });
   };
 
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <ModalHeader closeButton>
         <ModalTitle id="contained-modal-title-vcenter">
-          Добавление размера
+          Добавление Цвета
         </ModalTitle>
       </ModalHeader>
       <ModalBody>
         <Form>
           <FormControl
             className="placeholder"
-            placeholder={"Enter size"}
+            placeholder={"Enter color"}
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
@@ -45,12 +41,12 @@ const SizeModal = ({ show, onHide }) => {
         <Button variant="outline-danger" onClick={onHide}>
           Close
         </Button>
-        <Button variant="outline-success" onClick={addSize}>
-          Add size
+        <Button variant="outline-success" onClick={addColor}>
+          Add color
         </Button>
       </ModalFooter>
     </Modal>
   );
 };
 
-export default SizeModal;
+export default ColorModal;
