@@ -33,7 +33,6 @@ const VendorCodeModal = observer(({ show, onHide }) => {
     formData.append("firstCoast", `${firstCoast}`);
     formData.append("erp", `${erp}`);
     formData.append("mainImage", file);
-    console.log(formData);
     createVendorCode(formData).then((data) => onHide());
   };
   useEffect(() => {
@@ -66,7 +65,6 @@ const VendorCodeModal = observer(({ show, onHide }) => {
                   key={i.id}
                 >
                   {i.name}
-                  {console.log("here")}
                 </DropdownItem>
               ))}
             </DropdownMenu>
