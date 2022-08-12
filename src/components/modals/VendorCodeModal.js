@@ -77,7 +77,7 @@ const VendorCodeModal = observer(({ show, onHide }) => {
             onChange={(e) => setName(e.target.value)}
           />
           <br />
-          <p>Себестоимость</p>
+          {/* <p>Себестоимость</p>
           <FormControl
             className="placeholder"
             placeholder={"Enter firstCoast"}
@@ -93,7 +93,7 @@ const VendorCodeModal = observer(({ show, onHide }) => {
             type="number"
             value={erp}
             onChange={(e) => setErp(Number(e.target.value))}
-          />
+          /> */}
           <FormControl type="file" onChange={selectFile} />
         </Form>
       </ModalBody>
@@ -102,7 +102,7 @@ const VendorCodeModal = observer(({ show, onHide }) => {
           Close
         </Button>
         <Button variant="outline-success" onClick={addVendorCode}>
-          Add brand
+          Add vendorCode
         </Button>
       </ModalFooter>
     </Modal>

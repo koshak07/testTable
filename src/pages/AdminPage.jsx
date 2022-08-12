@@ -8,8 +8,10 @@ import BrandModal from "../components/modals/BrandModal ";
 import ColorModal from "../components/modals/ColorModal ";
 import SizeModal from "../components/modals/SizeModal";
 import VendorCodeModal from "../components/modals/VendorCodeModal";
+import NomenclatureModal from "../components/modals/NomenclatureModal";
 import SizeDisplay from "../components/SizeDisplay";
 import VendorCodeDisplay from "../components/VendorCodeDisplay";
+import NomenclatureDisplay from "../components/NomenclatureDisplay";
 import { userContext } from "../context/UserContext";
 import { fetchBrands } from "../http/brandApi";
 import { fetchColors } from "../http/colorApi";
@@ -21,6 +23,7 @@ const AdminPage = observer(() => {
   const [colorVisible, setColorVisible] = useState(false);
   const [brandVisible, setBrandVisible] = useState(false);
   const [vendorCodeVisible, setVendorCodeVisible] = useState(false);
+  const [nomenclatureVisible, setNomenclatureVisible] = useState(false);
   // const [modalActive, setModalActive] = useState(false);
   const { nomenclature } = useContext(userContext);
 
@@ -59,14 +62,24 @@ const AdminPage = observer(() => {
         <button onClick={() => setBrandVisible(true)}>Добавить брэнд</button>
       </div>
       <div>
+        <button onClick={() => setVendorCodeVisible(true)}>
+          Добавить Артикул
+        </button>
         <VendorCodeDisplay />
         <VendorCodeModal
           show={vendorCodeVisible}
           onHide={() => setVendorCodeVisible(false)}
         />
-        <button onClick={() => setVendorCodeVisible(true)}>
-          Добавить Артикул
+      </div>
+      <div>
+        <button onClick={() => setNomenclatureVisible(true)}>
+          Добавить номенклатуру
         </button>
+        <NomenclatureDisplay />
+        <NomenclatureModal
+          show={nomenclatureVisible}
+          onHide={() => setNomenclatureVisible(false)}
+        />
       </div>
     </div>
   );

@@ -6,7 +6,11 @@ export default class DataStore {
     this._colors = [];
     this._brands = [];
     this._vendorCodes = [];
+    this._nomenclatures = {};
     this._selectedBrand = {};
+    this._selectedVendorCode = {};
+    this._selectedSize = {};
+    this._selectedColor = {};
 
     makeAutoObservable(this);
   }
@@ -19,11 +23,23 @@ export default class DataStore {
   setBrands(brands) {
     this._brands = brands;
   }
+  setVendorCodes(vendorCodes) {
+    this._vendorCodes = vendorCodes;
+  }
+  setNomenclature(nomenclatures) {
+    this._nomenclatures = nomenclatures;
+  }
   setSelectedBrand(brand) {
     this._selectedBrand = brand;
   }
-  setVendorCodes(vendorCodes) {
-    this._vendorCodes = vendorCodes;
+  setSelectedVendorCode(vendorCode) {
+    this._selectedVendorCode = vendorCode;
+  }
+  setSelectedSize(size) {
+    this._selectedSize = size;
+  }
+  setSelectedColor(color) {
+    this._selectedColor = color;
   }
   getSizes() {
     return this._sizes;
@@ -34,10 +50,22 @@ export default class DataStore {
   getBrands() {
     return this._brands;
   }
+  getVendorCodes() {
+    return this._vendorCodes;
+  }
+  getNomenclature() {
+    return this._nomenclatures;
+  }
   get selectedBrand() {
     return this._selectedBrand;
   }
-  getVendorCodes() {
-    return this._vendorCodes;
+  get selectedVendorCode() {
+    return this._selectedVendorCode;
+  }
+  get selectedSize() {
+    return this._selectedSize;
+  }
+  get selectedColor() {
+    return this._selectedColor;
   }
 }

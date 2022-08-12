@@ -7,6 +7,7 @@ export const createVendorCode = async (vendorCode) => {
 
 export const fetchVendorCodes = async () => {
   const { data } = await $authHost.get("api/vendorCode");
+
   return data;
 };
 export const fetchOneVendorCodes = async (id) => {

@@ -110,3 +110,6 @@ button {
 .modal_add_content.active_add {
   transform: scale(1);
 } */
+.form-control {
+  height: 2rem;
+}
