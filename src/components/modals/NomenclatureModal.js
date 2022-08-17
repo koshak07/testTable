@@ -33,13 +33,13 @@ const NomenclatureModal = observer(({ show, onHide }) => {
 
   const [barcode, setBarcode] = useState("");
   const [vendorCode, setVendorCode] = useState("");
-  const [erp, setErp] = useState(0);
-  const [firstCoast, setFirstCoast] = useState(0);
+  const [erp, setErp] = useState("");
+  const [firstCoast, setFirstCoast] = useState("");
   const [file, setFile] = useState();
   const addNomenclature = () => {
     const formData = new FormData();
     formData.append("barcode", barcode);
-    formData.append("vendorCodeId", nomenclature.selectedVendorCode.id);
+    formData.append("vendorCodeId", currentBrand.id);
 
     formData.append("brandId", nomenclature.selectedBrand.id);
     formData.append("sizeId", nomenclature.selectedSize.id);
@@ -60,58 +60,39 @@ const NomenclatureModal = observer(({ show, onHide }) => {
     setFile(e.target.files[0]);
   };
 
-  const vendName = nomenclature.selectedVendorCode;
+  let vendName = nomenclature.selectedVendorCode;
 
-  const func = async () => {
-    let arr = [];
-    return await fetchVendorCodes().then((data) => {
-      return (arr = arr.push(data));
-    });
-  };
-  let arr = fetchVendorCodes().then(function (data) {
-    return data.map((i) => i);
-  });
-
-  // array.push(func());
-  // fetchVendorCodes().then(function (data) {
-  //   arr = data.map((i) => arr.push({ name: i.name, id: i.id }));
-  //   return arr;
-  // });
-  const copyArr = (array1, array2) => {
-    let res = array2.map((i) => array1.push(i));
-
-    return res;
-  };
-  // fetchVendorCodes().then(function (data) {
-
-  //   return res;
-  // });
-
-  // array.push(nomenclature._vendorCodes);
-  let arr1 = [
-    { id: 1, mainImage: "53-16.jpg", name: "53-16" },
-    { id: 2, mainImage: "46-20.jpg", name: "46-20" },
-    { id: 3, mainImage: "49-97.jpg", name: "49-97" },
-    { id: 4, mainImage: "4-97.jpg", name: "4-97" },
-    { id: 5, mainImage: "5-33.jpg", name: "5-33" },
-    { id: 6, mainImage: "45-40.jpg", name: "45-40" },
-    { id: 7, mainImage: "120.jpg", name: "120" },
-  ];
-  let arr2 = [];
-  // copyArr(arr2, arr);
-  // for (var i = 0; i < arr.length; i++) {
-  //   console.log(arr[i]);
-  //   arr2[i] = arr[i];
-  // }
-  let idName = fetchOneVendorCodes(3).then();
-
-  // let result = arr.find((item) => item.id === 1);
-  // arr.map((i) => console.log(i.name));
-  // arr2.map((i) => console.log(i.name));
-  console.log(arr1);
-  console.log(arr);
-  console.log(arr2);
-
+  let arrForFill = [];
+  nomenclature._vendorCodes.map((i) =>
+    arrForFill.push({
+      id: i.id,
+      name: i.name,
+      mainImage: i.mainImage,
+      brandId: i.brandId,
+    })
+  );
+  let currentBrand = arrForFill.find((i) => i.name === vendName);
+  useEffect(() => {
+    if (currentBrand && show) {
+      setVendorCode(currentBrand.id);
+    }
+  }, [vendName]);
+  useEffect(() => {
+    if (!show) {
+      nomenclature.setSelectedVendorCode(0);
+      nomenclature.setSelectedBrand(0);
+      nomenclature.setSelectedSize(0);
+      nomenclature.setSelectedColor(0);
+      setVendorCode("");
+      setBarcode("");
+      setErp(0);
+      setFirstCoast(0);
+    }
+  }, [show]);
+  console.log(vendName);
+  console.log(show);
+  console.log(currentBrand);
+  console.log(vendorCode);
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <ModalHeader closeButton>
@@ -122,10 +103,15 @@ const NomenclatureModal = observer(({ show, onHide }) => {
       <ModalBody>
         <Form>
           <br />
-          {/* {vendName} */}
+          <div>
+            {currentBrand != undefined && show ? (
+              <div>{currentBrand.name}</div>
+            ) : null}
+            {}
+          </div>
+          {/* <div>Брэнд {currentBrand.brandId}</div> */}
           <br />
           <div>{<ControllableStates />}</div>
-
           <Dropdown>
             <DropdownToggle>
               {nomenclature.selectedSize.name || "Выберите размер"}
@@ -157,10 +143,10 @@ const NomenclatureModal = observer(({ show, onHide }) => {
               ))}
             </DropdownMenu>
           </Dropdown>
-
           <FormControl
             className="placeholder"
             placeholder={"Enter barcode"}
+            required
             value={barcode}
             onChange={(e) => setBarcode(e.target.value)}
           />
